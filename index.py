@@ -17,9 +17,10 @@ app = Flask("Test")
 def index():
     return open('index.html', 'r').read()
 
-@app.route('/js/<path:path>')
+@app.route('/static/<path:path>')
 def js(path):
-    return open("js/"+ path.strip(".."),'r').read()
+    #strip .. to prevent directory traversal
+    return open("static/"+ path.strip(".."),'r').read()
 
 @app.route('/random/')
 def rando():
