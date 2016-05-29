@@ -2,3 +2,52 @@
 	background-color: #0055cc;
 	color: #FFFFFF;
 }
+
+input{
+	width: 35px;
+}
+
+.categoryRow{
+	display: inline-block;
+	border-style: solid hidden solid hidden;
+	border-width: 2px;
+	border-color: #6f6f6f;
+	padding: 5px 5px 5px 5px;
+	float:left;
+	width:75%;
+	text-align: center;
+}
+
+.dropdown{
+	display: inline-block;
+	width: 20%;
+}
+
+.removeWrapper{
+	display: inline-block;
+	width:20%	
+}
+
+.remove{
+	background-color: #ff3636;
+	color: #ffffff;
+}
+
+.remove:hover{
+	background-color: #ff4a4a;
+	color: #ffffff;
+}
+
+.number{
+	width: 20%;
+	display: inline-block;
+}
+
+.subjectBox{
+	width: 30%;
+	text-align: center;
+	display: inline-block;
+	font-size: 20px;
+	margin-top:auto;
+	margin-bottom:auto;
+}
