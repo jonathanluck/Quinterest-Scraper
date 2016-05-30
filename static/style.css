@@ -2,13 +2,17 @@
 	background-color: #0055cc;
 	color: #FFFFFF;
 }
+#wrapper{
+	width: 100%;
+}
 
 input{
 	width: 35px;
 }
 
 .categoryRow{
-	display: inline-block;
+	margin-left:auto;
+	margin-right:auto;
 	border-style: solid hidden solid hidden;
 	border-width: 2px;
 	border-color: #6f6f6f;
