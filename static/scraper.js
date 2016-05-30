@@ -1,5 +1,3 @@
-//alert("js loaded");
-var querries = [];
 var numRows = 0;
 subs = {
 	'All' : 'categ=All&sub=None',
@@ -71,4 +69,24 @@ function addRow(){
 		setTimeout(function(){p.remove()},400);
 		numRows--;
 	});
+}
+
+function sub(){
+	querries = [];
+	for(i = 1; i <= numRows; i++){
+		num = 1
+		if(!isNaN(parseInt($("#num"+i).val()))){
+			num = parseInt($("#num"+i).val());
+			if(num > 20){
+				num = 20;
+			}
+		}
+		querries.push(subs[$("#categ"+i).val()]+ "&amount=" + num)
+	}
+	querries.forEach(function(e){
+		jQuery.get("/random/",e, function(data){
+			$("#content").append(data);
+		})
+	});
+	
 }
