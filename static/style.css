@@ -1,9 +1,36 @@
-#dropdownMenu1{
-	background-color: #0055cc;
-	color: #FFFFFF;
-}
-#wrapper{
+#categoryWrapper{
+	margin-right: atuo;
+	margin-left:auto;
 	width: 100%;
+	margin-bottom:2px;
+}
+
+#addCategory{
+	display: block;
+	width: 75%;
+	background-color: #00aeff;
+	color: #ffffff;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#addCategory:hover{
+	background-color: #16b5ff;
+	text-decoration: underline;
+}
+#submit{
+	margin-top: 2px;
+	margin-left:auto;
+	margin-right:auto;
+	display: block;
+	width: 75%;
+	background-color: #01c100;
+	color: #ffffff;
+}
+
+#submit:hover{
+	background-color: #02ce00;
+	text-decoration: underline;
 }
 
 input{
@@ -13,6 +40,7 @@ input{
 .categoryRow{
 	margin-left:auto;
 	margin-right:auto;
+	margin-bottom: 3px;
 	border-style: solid hidden solid hidden;
 	border-width: 2px;
 	border-color: #6f6f6f;
@@ -42,11 +70,28 @@ input{
 	color: #ffffff;
 }
 
-.number{
-	width: 20%;
+.input-sm{
+	margin-left:4px;
+	width: 50px;
 	display: inline-block;
 }
 
+.categoryBox{
+	display: inline-block;
+	width: 60%;
+	float:left;
+	padding: 0px 30px 0 30px;
+	
+}
+.form-group{
+	display: inline-block;
+	margin-bottom: 0px;
+	/*width:25%;*/
+}
+.form-control{
+	display: inline-block;
+	padding: 2px 5px 2px 5px;
+}
 .subjectBox{
 	width: 30%;
 	text-align: center;
