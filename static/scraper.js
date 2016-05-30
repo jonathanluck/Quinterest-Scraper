@@ -40,38 +40,41 @@ $(document).ready(function(){
 });
 
 function addRow(){
-	numRows++;
-	categoryRow = document.createElement("div");
-	$(categoryRow).addClass("categoryRow");
-	categoryBox = document.createElement("div");
-	$(categoryBox).addClass("categoryBox");
-	formGroup = document.createElement("div");
-	$(formGroup).addClass("form-group");
-	formControl = document.createElement("select");
-	$(formControl).attr({"class": "form-control", "id": ("categ"+numRows)})
-	Object.keys(subs).forEach(function(e){
-		opt = document.createElement("option")
-		$(opt).text(e);
-		$(formControl).append(opt)		
-	});
-	$(formGroup).append(formControl);
-	$(categoryBox).append(formGroup);
-	$(categoryRow).append(categoryBox);
-	str = '<div style="display: inline-block">Number: </div><div class="form-group"><input class="form-control input-sm" id="num'+numRows+'" type="text"></div><div class="removeWrapper"><button class="btn remove" id="remove'+numRows+'">Remove</button></div>'
-	$(categoryRow).append(str);
-	$(categoryRow).hide();
-	$("#categoryWrapper").append(categoryRow);
-	$(categoryRow).slideDown(200);
-	$("#remove"+numRows).click(function(e){
-		$(this).prop('disabled', true)
-		p = $(this).parent().parent();
-		p.slideUp(200);
-		setTimeout(function(){p.remove()},400);
-		numRows--;
-	});
+	if(numRows <=20){
+		numRows++;
+		categoryRow = document.createElement("div");
+		$(categoryRow).addClass("categoryRow");
+		categoryBox = document.createElement("div");
+		$(categoryBox).addClass("categoryBox");
+		formGroup = document.createElement("div");
+		$(formGroup).addClass("form-group");
+		formControl = document.createElement("select");
+		$(formControl).attr({"class": "form-control", "id": ("categ"+numRows)})
+		Object.keys(subs).forEach(function(e){
+			opt = document.createElement("option")
+			$(opt).text(e);
+			$(formControl).append(opt)		
+		});
+		$(formGroup).append(formControl);
+		$(categoryBox).append(formGroup);
+		$(categoryRow).append(categoryBox);
+		str = '<div style="display: inline-block">Number: </div><div class="form-group"><input class="form-control input-sm" id="num'+numRows+'" type="text"></div><div class="removeWrapper"><button class="btn remove" id="remove'+numRows+'">Remove</button></div>'
+		$(categoryRow).append(str);
+		$(categoryRow).hide();
+		$("#categoryWrapper").append(categoryRow);
+		$(categoryRow).slideDown(200);
+		$("#remove"+numRows).click(function(e){
+			$(this).prop('disabled', true)
+			p = $(this).parent().parent();
+			p.slideUp(200);
+			setTimeout(function(){p.remove()},400);
+			numRows--;
+		});
+	}
 }
 
 function sub(){
+	$("#content").empty()
 	querries = [];
 	for(i = 1; i <= numRows; i++){
 		num = 1
@@ -83,10 +86,12 @@ function sub(){
 		}
 		querries.push(subs[$("#categ"+i).val()]+ "&amount=" + num)
 	}
+	querry = ""
 	querries.forEach(function(e){
-		jQuery.get("/random/",e, function(data){
-			$("#content").append(data);
-		})
+		querry += e + ";"
 	});
+	jQuery.get("/random/", querry, function(data){
+			$("#content").append(data);
+	})
 	
 }

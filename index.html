@@ -4,42 +4,19 @@
 <head>
 	<meta charset="UTF-8">
 
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="static/jquery-2.2.4.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="static/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="static/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script src="static/scraper.js"></script>
 	<link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 
 <body>
 <div id ="wrapper">
-	<div id="categoryWrapper">
-		<!--
-		<div class="categoryRow">
-			<div class="categoryBox">
-			<div class="form-group">
-				<select class="form-control" id="sel1">
-					<option>All</option>
-					<option>Science - All</option>
-					<option>Literature - All</option>
-					<option>History - All</option>
-				</select>
-			</div>
-			</div>
-			<div style="display: inline-block">Number: </div>
-			<div class="form-group">
-				<input class="form-control input-sm" id="inputsm" type="text">
-			</div>
-			<div class="removeWrapper">
-				<button class="btn remove">Remove</button>
-			</div>
-		</div>
-		-->
-		
-	</div>
+	<div id="categoryWrapper"></div>
 	<button class="btn" id="addCategory" onClick="addRow()">Add Another Category</button>
 	<button class="btn" id="submit" onClick="sub()">Submit</button>
 	<hr>
