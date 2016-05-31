@@ -76,16 +76,19 @@ function addRow(){
 function sub(){
 	$("#content").empty()
 	querries = [];
-	for(i = 1; i <= numRows; i++){
+	rows = document.getElementsByClassName("categoryRow");
+	Array.prototype.forEach.call(rows, function(row) {
+		subject = $(row).find("select").val()
+		numstr = $(row).find("input").val()
 		num = 1
-		if(!isNaN(parseInt($("#num"+i).val()))){
-			num = parseInt($("#num"+i).val());
+		if(!isNaN(parseInt(numstr))){
+			num = parseInt(numstr);
 			if(num > 20){
 				num = 20;
 			}
 		}
-		querries.push(subs[$("#categ"+i).val()]+ "&amount=" + num)
-	}
+		querries.push(subs[subject]+ "&amount=" + num)
+	});
 	querry = ""
 	querries.forEach(function(e){
 		querry += e + ";"
