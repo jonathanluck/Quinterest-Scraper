@@ -86,6 +86,10 @@
 	width: 75%;
 }
 
+#settings .form-group{
+	margin-right: 5%;
+}
+
 #resultsSettings button{
 	width: 49%;
 }

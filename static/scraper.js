@@ -147,6 +147,7 @@ function sub(){
 	rows = document.getElementsByClassName("categoryRow");
 	diff = $("#diff").val()
 	diffs = ["All", "Open", "College", "High School", "Middle School"]
+	type = $("#type").val()
 	Array.prototype.forEach.call(rows, function(row) {
 		subject = $(row).find("select").val();
 		numstr = $(row).find("input").val();
@@ -160,7 +161,7 @@ function sub(){
 				num = 0;
 			}
 		}
-		str = subs[subject]+ "&amount=" + num;
+		str = subs[subject]+ "&amount=" + num + "&qtype="+type;
 		if(diff != "College" && diffs.indexOf(diff) >= 0){
 			str += "&difficulty=" + diff;
 		}
