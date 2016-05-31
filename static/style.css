@@ -17,6 +17,7 @@
 #addCategory:hover{
 	background-color: #16b5ff;
 	text-decoration: underline;
+	transition: background-color 0.5s;
 }
 #clear{
 	display: block;
@@ -30,6 +31,7 @@
 #clear:hover{
 	background-color: #ff4a4a;
 	text-decoration: underline;
+	transition: background-color 0.5s;
 }
 
 #submit{
@@ -45,6 +47,7 @@
 #submit:hover{
 	background-color: #02ce00;
 	text-decoration: underline;
+	transition: background-color 0.5s;
 }
 
 #content{
@@ -76,6 +79,7 @@
 #settingsbtn:hover{
 	background-color: #435a70;
 	text-decoration: underline;
+	transition: background-color 0.5s;
 }
 
 #settings{
@@ -98,6 +102,15 @@
 	float:right;
 }
 
+#sampleDist{
+	color: #ffffff;
+	background-color: #487aa9;
+}
+#sampleDist:hover{
+	background-color: #528bc0;
+	text-decoration: underline;
+	transition: background-color 0.5s;
+}
 input{
 	width: 35px;
 }
@@ -132,6 +145,7 @@ input{
 .remove:hover{
 	background-color: #ff4a4a;
 	color: #ffffff;
+	text-decoration: underline;
 }
 
 .input-sm{

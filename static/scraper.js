@@ -84,7 +84,9 @@ function addRow(slide = true){
 			numRows--;
 		});
 		id++;
+		return categoryRow;
 	}
+	return null;
 }
 
 function clearRows(slide = true){
@@ -139,6 +141,17 @@ function toggleresultsSettings(){
 		$("#resultsSettings").slideDown(200);
 		resSettingsShowing = !resSettingsShowing;
 	}
+}
+
+function setDistro(distro = {"All" : 5}){
+	clearRows(false);
+	Object.keys(distro).forEach(function(e){
+		row = addRow(false);
+		if(row != null){
+			$(row).find("select").val(e);
+			$(row).find("input").val(distro[e]);
+		}
+	});
 }
 
 function sub(){
