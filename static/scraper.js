@@ -1,4 +1,5 @@
 var numRows = 0;
+var id = 0;
 subs = {
 	'All' : 'categ=All&sub=None',
 	'Literature - All' : 'categ=Literature&sub=All',
@@ -42,6 +43,7 @@ $(document).ready(function(){
 function addRow(){
 	if(numRows <=20){
 		numRows++;
+		$("#categoryWrapper").removeAttr("style")
 		categoryRow = document.createElement("div");
 		$(categoryRow).addClass("categoryRow");
 		categoryBox = document.createElement("div");
@@ -49,7 +51,7 @@ function addRow(){
 		formGroup = document.createElement("div");
 		$(formGroup).addClass("form-group");
 		formControl = document.createElement("select");
-		$(formControl).attr({"class": "form-control", "id": ("categ"+numRows)})
+		$(formControl).attr({"class": "form-control", "id": ("categ"+id)})
 		Object.keys(subs).forEach(function(e){
 			opt = document.createElement("option")
 			$(opt).text(e);
@@ -58,19 +60,25 @@ function addRow(){
 		$(formGroup).append(formControl);
 		$(categoryBox).append(formGroup);
 		$(categoryRow).append(categoryBox);
-		str = '<div style="display: inline-block">Number: </div><div class="form-group"><input class="form-control input-sm" id="num'+numRows+'" type="text"></div><div class="removeWrapper"><button class="btn remove" id="remove'+numRows+'">Remove</button></div>'
+		str = '<div style="display: inline-block">Number: </div><div class="form-group"><input class="form-control input-sm" id="num'+id+'" type="text" value="1"></div><div class="removeWrapper"><button class="btn remove" id="remove'+id+'">Remove</button></div>'
 		$(categoryRow).append(str);
 		$(categoryRow).hide();
 		$("#categoryWrapper").append(categoryRow);
 		$(categoryRow).slideDown(200);
-		$("#remove"+numRows).click(function(e){
+		$("#remove"+id).click(function(e){
 			$(this).prop('disabled', true)
 			p = $(this).parent().parent();
 			p.slideUp(200);
 			setTimeout(function(){p.remove()},400);
 			numRows--;
 		});
+		id++;
 	}
+}
+
+function clearRows(){
+	$('#categoryWrapper').slideUp(300).empty();
+	numRows = 0;
 }
 
 function sub(){
