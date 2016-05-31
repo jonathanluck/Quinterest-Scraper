@@ -1,5 +1,7 @@
 var numRows = 0;
 var id = 0;
+var categoriesShowing = true;
+var resSettingsShowing = false;
 subs = {
 	'All' : 'categ=All&sub=None',
 	'Literature - All' : 'categ=Literature&sub=All',
@@ -81,8 +83,34 @@ function clearRows(){
 	numRows = 0;
 }
 
+function toggleCategories(){
+	if(categoriesShowing){
+		$("#categories").slideUp(200);
+		$("#toggleCategories").text("Show Categories");
+	}
+	else{
+		$("#categories").slideDown(200);
+		$("#toggleCategories").text("Hide Categories");
+	}
+	categoriesShowing = !categoriesShowing;
+}
+
+function toggleresultsSettings(){
+	if(resSettingsShowing){
+		$("#resultsSettings").slideUp(200);
+		if(!categoriesShowing){
+			toggleCategories();
+
+		}
+		resSettingsShowing = !resSettingsShowing;
+	}
+	else if (!resSettingsShowing){
+		$("#resultsSettings").slideDown(200);
+		resSettingsShowing = !resSettingsShowing;
+	}
+}
+
 function sub(){
-	$("#content").empty()
 	querries = [];
 	rows = document.getElementsByClassName("categoryRow");
 	Array.prototype.forEach.call(rows, function(row) {
@@ -94,6 +122,9 @@ function sub(){
 			if(num > 20){
 				num = 20;
 			}
+			if(num <= 0){
+				num = 0;
+			}
 		}
 		querries.push(subs[subject]+ "&amount=" + num)
 	});
@@ -102,7 +133,10 @@ function sub(){
 		querry += e + ";"
 	});
 	jQuery.get("/random/", querry, function(data){
-			$("#content").append(data);
+		$("#content").empty()
+		$("#resultsSettings").slideDown(200);
+		resSettingsShowing=true;
+		$("#content").append(data);
 	})
 	
 }

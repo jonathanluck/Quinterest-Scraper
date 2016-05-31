@@ -53,6 +53,22 @@
 	margin-right:auto;
 	font-size: 15px;
 }
+#wrapper{
+	padding-top: 5px;
+}
+#resultsSettings{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 2px;
+	width: 75%;
+}
+#resultsSettings button{
+	width: 49%;
+}
+
+#toggleCategories{
+	float:right;
+}
 
 input{
 	width: 35px;
@@ -106,7 +122,6 @@ input{
 .form-group{
 	display: inline-block;
 	margin-bottom: 0px;
-	/*width:25%;*/
 }
 .form-control{
 	display: inline-block;

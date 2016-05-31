@@ -15,6 +15,8 @@ def formatreq(args):
         querryarr.append(args.get(k, defaults[k])[0])
     if (int(querryarr[0]) > 20):
         querryarr[0] = "20"
+    elif (int(querryarr[0]) <= 0):
+        querrarr[0] = "0"
     a = '/php/randomResults.php?amount={}&categ={}&difficulty={}&qtype={}&sub={}&tournamentyear={}'.format(*querryarr)
     return a
 
@@ -50,6 +52,8 @@ def rando():
     #make a list of querries to quinterest
     for r in reqs:
         querry.append(formatreq(r))
+    if(len(querry) > 20):
+        querry = querry[:20]
     questions = []
     for q in querry:
         out = get("http://quinterest.org{}".format(q)).text
@@ -61,4 +65,4 @@ def rando():
     return ("<br>".join(questions))
 
 
-app.run("localhost",8080)
+app.run("0.0.0.0",8080)
