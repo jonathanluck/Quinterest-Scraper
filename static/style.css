@@ -167,3 +167,30 @@ input{
 .caret{
 	margin-left: 4px	!important;
 }
+
+@media only screen and (max-width: 600px) {
+	.categoryBox{
+		width: 100%;
+		margin-bottom: 4px;
+	}
+	
+	.categoryRow{
+		padding: 5px 2px 8px 2px;
+	}
+	
+	#categories button{
+		font-size: 16px;
+	}
+	hr{
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.removeWrapper{
+		width: auto;
+		float:right;
+	}
+	#content{
+		width: 90%;
+		font-size: 16px;
+	}
+}
