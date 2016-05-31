@@ -20,6 +20,12 @@
 			<div id="categoryWrapper"></div>
 			<button class="btn" id="addCategory" onClick="addRow()"><b>+</b> Add Another Category</button>
 			<button class="btn" id="clear" onClick="clearRows()">Clear Categories</button>
+			<button class="btn" id="settingsbtn" onClick="toggleSettings()">Show Settings<span class="caret"></span></button>
+			<div id="settings" style="display:none">
+				<hr>
+				<div class="form-group"><label for="diff">Difficulty:</label><select id="diff" class="form-control"><option>All</option><option>Open</option><option>College</option><option>High School</option><option>Middle School</option></select></div>
+				<hr>
+			</div>
 			<button class="btn" id="submit" onClick="sub()">Submit</button>
 		</div>
 		<div id="resultsSettings" style="display:none">

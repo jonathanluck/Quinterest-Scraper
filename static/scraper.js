@@ -2,6 +2,7 @@ var numRows = 0;
 var id = 0;
 var categoriesShowing = true;
 var resSettingsShowing = false;
+var settings = false;
 
 subs = {
 	'All' : 'categ=All&sub=None',
@@ -42,9 +43,10 @@ subs = {
 
 $(document).ready(function(){
 	addRow();
+	$("#diff").val("College");
 });
 
-function addRow(){
+function addRow(slide = true){
 	if(numRows <=20){
 		numRows++;
 		$("#categoryWrapper").removeAttr("style")
@@ -68,7 +70,12 @@ function addRow(){
 		$(categoryRow).append(str);
 		$(categoryRow).hide();
 		$("#categoryWrapper").append(categoryRow);
-		$(categoryRow).slideDown(200);
+		if(slide){
+			$(categoryRow).slideDown(200);
+		}
+		else{
+			$(categoryRow).show();
+		}
 		$("#remove"+id).click(function(e){
 			$(this).prop('disabled', true)
 			p = $(this).parent().parent();
@@ -80,9 +87,31 @@ function addRow(){
 	}
 }
 
-function clearRows(){
-	$('#categoryWrapper').slideUp(300).empty();
+function clearRows(slide = true){
+	if(slide){
+		$('#categoryWrapper').slideUp(300);
+	}
+	$('#categoryWrapper').empty();
 	numRows = 0;
+}
+
+function toggleSettings(){
+	wrapperspan  = document.createElement("span");
+	caret = document.createElement("span");
+	$(caret).addClass("caret");
+	$(wrapperspan).append(caret);
+	if(settings){
+		$("#settings").slideUp(200);
+		$("#settingsbtn").text("Show Settings");
+		$("#settingsbtn").append(wrapperspan);
+	}
+	else{
+		$("#settings").slideDown(200);
+		$("#settingsbtn").text("Hide Settings");
+		$(wrapperspan).addClass("dropup");
+		$("#settingsbtn").append(wrapperspan);
+	}
+	settings = !settings;
 }
 
 function toggleCategories(){
@@ -116,6 +145,8 @@ function sub(){
 	$("#submit").prop("disabled", true);
 	querries = [];
 	rows = document.getElementsByClassName("categoryRow");
+	diff = $("#diff").val()
+	diffs = ["All", "Open", "College", "High School", "Middle School"]
 	Array.prototype.forEach.call(rows, function(row) {
 		subject = $(row).find("select").val();
 		numstr = $(row).find("input").val();
@@ -129,7 +160,11 @@ function sub(){
 				num = 0;
 			}
 		}
-		querries.push(subs[subject]+ "&amount=" + num);
+		str = subs[subject]+ "&amount=" + num;
+		if(diff != "College" && diffs.indexOf(diff) >= 0){
+			str += "&difficulty=" + diff;
+		}
+		querries.push(str);
 	});
 	querry = "";
 	querries.forEach(function(e){
