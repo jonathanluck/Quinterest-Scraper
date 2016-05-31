@@ -2,6 +2,7 @@ var numRows = 0;
 var id = 0;
 var categoriesShowing = true;
 var resSettingsShowing = false;
+
 subs = {
 	'All' : 'categ=All&sub=None',
 	'Literature - All' : 'categ=Literature&sub=All',
@@ -38,6 +39,7 @@ subs = {
 	'Current Events' : 'categ=Current Events&sub=None',
 	'Trash' : 'categ=Trash&sub=None'
 }
+
 $(document).ready(function(){
 	addRow();
 });
@@ -57,12 +59,12 @@ function addRow(){
 		Object.keys(subs).forEach(function(e){
 			opt = document.createElement("option")
 			$(opt).text(e);
-			$(formControl).append(opt)		
+			$(formControl).append(opt);
 		});
 		$(formGroup).append(formControl);
 		$(categoryBox).append(formGroup);
 		$(categoryRow).append(categoryBox);
-		str = '<div style="display: inline-block">Number: </div><div class="form-group"><input class="form-control input-sm" id="num'+id+'" type="text" value="1"></div><div class="removeWrapper"><button class="btn remove" id="remove'+id+'">Remove</button></div>'
+		str = '<div style="display: inline-block">Number: </div><div class="form-group"><input class="form-control input-sm" id="num'+id+'" type="text" value="1"></div><div class="removeWrapper"><button class="btn remove" id="remove'+id+'">Remove</button></div>';
 		$(categoryRow).append(str);
 		$(categoryRow).hide();
 		$("#categoryWrapper").append(categoryRow);
@@ -111,12 +113,13 @@ function toggleresultsSettings(){
 }
 
 function sub(){
+	$("#submit").prop("disabled", true);
 	querries = [];
 	rows = document.getElementsByClassName("categoryRow");
 	Array.prototype.forEach.call(rows, function(row) {
-		subject = $(row).find("select").val()
-		numstr = $(row).find("input").val()
-		num = 1
+		subject = $(row).find("select").val();
+		numstr = $(row).find("input").val();
+		num = 1;
 		if(!isNaN(parseInt(numstr))){
 			num = parseInt(numstr);
 			if(num > 20){
@@ -126,17 +129,19 @@ function sub(){
 				num = 0;
 			}
 		}
-		querries.push(subs[subject]+ "&amount=" + num)
+		querries.push(subs[subject]+ "&amount=" + num);
 	});
-	querry = ""
+	querry = "";
 	querries.forEach(function(e){
-		querry += e + ";"
+		querry += e + ";";
 	});
 	jQuery.get("/random/", querry, function(data){
-		$("#content").empty()
+		$("#content").empty();
 		$("#resultsSettings").slideDown(200);
 		resSettingsShowing=true;
 		$("#content").append(data);
-	})
+		$("#submit").prop("disabled", false);
+	});
+	setTimeout(function(){$("#submit").prop("disabled", false);},3000);
 	
 }
