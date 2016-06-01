@@ -47,7 +47,7 @@ $(document).ready(function(){
 });
 
 function addRow(slide = true){
-	if(numRows <=20){
+	if(numRows < 25){
 		numRows++;
 		$("#categoryWrapper").removeAttr("style")
 		categoryRow = document.createElement("div");

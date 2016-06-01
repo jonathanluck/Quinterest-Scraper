@@ -52,8 +52,8 @@ def rando():
     #make a list of querries to quinterest
     for r in reqs:
         querry.append(formatreq(r))
-    if(len(querry) > 20):
-        querry = querry[:20]
+    if(len(querry) > 25):
+        querry = querry[:25]
     questions = []
     for q in querry:
         out = get("http://quinterest.org{}".format(q)).text
