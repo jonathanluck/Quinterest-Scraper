@@ -189,8 +189,20 @@ function sub(){
 		$("#resultsSettings").slideDown(200);
 		resSettingsShowing=true;
 		$("#content").append(data);
+		//buttonstr = '<button class="btn" onclick="replaceQuestion($(this))">Replace This Question</button>'
+		//$(".col-md-12").append(buttonstr);
 		$("#submit").prop("disabled", false);
 	});
 	setTimeout(function(){$("#submit").prop("disabled", false);},3000);
+	
+}
+
+function replaceQuestion(ele){
+	query = $(ele).parent().find(".subjTag").text() + ";";
+	row = $(ele).parent().parent();
+	jQuery.get("/random/", query, function(data){
+		$(data).insertBefore($(row));
+		$(row).remove();
+	});
 	
 }

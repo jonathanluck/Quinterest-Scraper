@@ -60,6 +60,14 @@ def rando():
         out = BeautifulSoup(out, 'html.parser').find_all(attrs={"class":"row"})
         out.pop(0)
         for e in out:
+            #insert the query and replace button at the end of the question
+            querystr = q[23:]
+            querystr = sub('amount=[0-9]+','amount=1',querystr)
+            span = BeautifulSoup('<span class="subjTag" style="display:none"></span>').span
+            repbutton = BeautifulSoup('<button class="btn repbutton" onclick="replaceQuestion($(this))">Replace This Question</button>').button
+            span.string = querystr
+            e.div.append(span)
+            e.div.append(repbutton)
             questions.append(str(e))
     questions = processQuestions(questions)
     return ("<br>".join(questions))

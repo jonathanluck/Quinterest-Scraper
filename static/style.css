@@ -54,7 +54,8 @@
 	width: 80%;
 	margin-left:auto;
 	margin-right:auto;
-	font-size: 15px;
+	margin-bottom:10px;
+	font-size: 16px;
 }
 #wrapper{
 	padding-top: 5px;
@@ -111,6 +112,10 @@
 	text-decoration: underline;
 	transition: background-color 0.5s;
 }
+#content br{
+	line-height: 1;
+}
+
 input{
 	width: 35px;
 }
@@ -121,7 +126,7 @@ input{
 	margin-bottom: 3px;
 	border-style: solid hidden solid hidden;
 	border-width: 2px;
-	border-color: #6f6f6f;
+	border-color: #cecece;
 	padding: 5px 5px 5px 5px;
 	width:75%;
 	text-align: center;
@@ -182,6 +187,26 @@ input{
 	margin-left: 4px	!important;
 }
 
+.repbutton{
+	background-color: #5698e0;
+	color: #ffffff;
+	float: right;
+	padding: 4px 10px;
+	margin-top: -8px;
+}
+
+.repbutton:hover{
+	background-color: #65a8f1;
+	color: #ffffff;
+}
+.row{
+    border-bottom-color: #e0e0e0;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	padding-bottom: 6px;
+	margin-top: -8px;
+}
+
 @media only screen and (max-width: 600px) {
 	.categoryBox{
 		width: 100%;
@@ -205,6 +230,6 @@ input{
 	}
 	#content{
 		width: 90%;
-		font-size: 16px;
+		font-size: 17px;
 	}
 }
