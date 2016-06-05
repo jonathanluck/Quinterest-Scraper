@@ -143,13 +143,23 @@ function toggleresultsSettings(){
 	}
 }
 
-function setDistro(distro = {"All" : 5}){
+function restoreDistro(){
+	if(localStorage.getItem("distro") != null){
+		setDistro(JSON.parse(localStorage["distro"]));
+	}
+	else{
+		alert('No saved distribution found. Try saving a distribution first');
+	}
+}
+
+
+function setDistro(distro = [["All", 5]]){
 	clearRows(false);
-	Object.keys(distro).forEach(function(e){
+	distro.forEach(function(e){
 		row = addRow(false);
 		if(row != null){
-			$(row).find("select").val(e);
-			$(row).find("input").val(distro[e]);
+			$(row).find("select").val(e[0]);
+			$(row).find("input").val(e[1]);
 		}
 	});
 }
@@ -200,9 +210,35 @@ function sub(){
 function replaceQuestion(ele){
 	query = $(ele).parent().find(".subjTag").text() + ";";
 	row = $(ele).parent().parent();
+	resultnum = $($(row).find("p")[0]).text().match(/Result: [0-9]+ /)[0]
 	jQuery.get("/random/", query, function(data){
+		data = data.replace("Result: 1 ", resultnum);
 		$(data).insertBefore($(row));
 		$(row).remove();
 	});
 	
+}
+
+function saveDistro(){
+	rows = $(".categoryRow");
+	distro = [];
+	Array.prototype.forEach.call(rows, function(r){
+		subj = $(r).find("select").val();
+		numstr = $(r).find("input").val();
+		num = 1;
+		temp = []
+		if(!isNaN(parseInt(numstr))){
+			num = parseInt(numstr);
+			if(num > 20){
+				num = 20;
+			}
+			if(num <= 0){
+				num = 0;
+			}
+		}
+		temp.push(subj);
+		temp.push(num);
+		distro.push(temp);
+	});
+	localStorage.setItem("distro", JSON.stringify(distro));
 }

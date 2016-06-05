@@ -24,7 +24,11 @@
 			<div id="settings" style="display:none">
 				<hr>
 				<div class="form-group"><label for="diff">Difficulty:</label><select id="diff" class="form-control"><option>All</option><option>Open</option><option>College</option><option>HS</option><option>High School</option><option>Middle School</option></select></div><div class="form-group"><label for="type">Question Type:</label><select id="type" class="form-control"><option>Tossups</option><option>Bonuses</option></select></div>
-				<button class="btn" id="sampleDist" onClick="setDistro({'Literature - American' : '1', 'Literature - British' : '1', 'Literature - European' : '2', 'Literature - World' : '1', 'History - American' : '1', 'History - European' : '1', 'History - World' : '1', 'History - All' : '1', 'Science - Biology' : '1', 'Science - Chemistry' : '1', 'Science - Physics' : '1', 'Science - All' : '1', 'Fine Arts - Auditory' : '1', 'Fine Arts - Visual' : '1', 'Fine Arts - Other' : '1', 'Religion' : '1', 'Mythology' : '1', 'Philosophy' : '1', 'Social Science' : '1', 'Geography' : '1', 'Current Events' : '1', 'Trash' : '1'})">Add Sample Distribution</button>
+				<div id="settingsButtons">
+				<button class="btn settingsBtn" id="sampleDist" onClick="setDistro([['Literature - American', 1], ['Literature - British', 1], ['Literature - European', 1], ['Literature - World', 1], ['History - American', 1], ['History - European', 1], ['History - World', 1], ['History - All', 1], ['Science - Biology', 1], ['Science - Chemistry', 1], ['Science - Physics', 1], ['Science - All', 1], ['Fine Arts - Auditory', 1], ['Fine Arts - Visual', 1], ['Fine Arts - Other', 1], ['Religion', 1], ['Mythology', 1], ['Philosophy', 1], ['Social Science', 1], ['Geography', 1], ['Current Events', 1], ['Trash', 1]])">Add Sample Distribution</button>
+				<button class="btn settingsBtn" onClick="saveDistro()">Save Current Distribution</button>
+				<button class="btn settingsBtn" onClick="restoreDistro()">Restore Saved Distribution</button>
+				</div>
 				<hr>
 			</div>
 			<button class="btn" id="submit" onClick="sub()">Submit</button>
