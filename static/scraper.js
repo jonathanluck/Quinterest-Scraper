@@ -169,7 +169,7 @@ function sub(){
 	querries = [];
 	rows = document.getElementsByClassName("categoryRow");
 	diff = $("#diff").val()
-	diffs = ["All", "Open", "College", "High School", "Middle School"]
+	diffs = ["All", "Open", "College", "High School", "HS", "Middle School"]
 	type = $("#type").val()
 	Array.prototype.forEach.call(rows, function(row) {
 		subject = $(row).find("select").val();
@@ -199,13 +199,27 @@ function sub(){
 		$("#resultsSettings").slideDown(200);
 		resSettingsShowing=true;
 		$("#content").append(data);
-		//buttonstr = '<button class="btn" onclick="replaceQuestion($(this))">Replace This Question</button>'
-		//$(".col-md-12").append(buttonstr);
 		$("#submit").prop("disabled", false);
+		addDBLinks();
 	});
 	setTimeout(function(){$("#submit").prop("disabled", false);},3000);
 	
 }
+
+function addDBLinks(){
+	rows = $(".row")
+	dblink = "http://www.aseemsdb.me/results?query="
+	Array.prototype.forEach.call(rows, function(row) {
+		answer = $(row).text().match(/ANSWER: ([^[\n(]+)/)[0].trim().replace("ANSWER: ", "");
+		a = document.createElement("a");
+		$(a).attr("href", dblink + answer);
+		$(a).attr("target", "_blank")
+		$(a).text("AseemIt!");
+		$(row).find(".col-md-12").append(a);
+	});
+	
+}
+
 
 function replaceQuestion(ele){
 	query = $(ele).parent().find(".subjTag").text() + ";";
