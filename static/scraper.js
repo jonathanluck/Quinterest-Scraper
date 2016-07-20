@@ -3,6 +3,7 @@ var id = 0;
 var categoriesShowing = true;
 var resSettingsShowing = false;
 var settings = false;
+var dblink = "http://www.aseemsdb.me/results?query=";
 
 subs = {
 	'All' : 'categ=All&sub=None',
@@ -208,7 +209,6 @@ function sub(){
 
 function addDBLinks(){
 	rows = $(".row")
-	dblink = "http://www.aseemsdb.me/results?query="
 	Array.prototype.forEach.call(rows, function(row) {
 		answer = $(row).text().match(/ANSWER: ([^[\n(]+)/)[0].trim().replace("ANSWER: ", "");
 		a = document.createElement("a");
@@ -226,8 +226,14 @@ function replaceQuestion(ele){
 	row = $(ele).parent().parent();
 	resultnum = $($(row).find("p")[0]).text().match(/Result: [0-9]+ /)[0]
 	jQuery.get("/random/", query, function(data){
-		data = data.replace("Result: 1 ", resultnum);
-		$(data).insertBefore($(row));
+		data = $(data.replace("Result: 1 ", resultnum));
+		answer = data.text().match(/ANSWER: ([^[\n(]+)/)[0].trim().replace("ANSWER: ", "");
+		a = document.createElement("a");
+		$(a).attr("href", dblink + answer);
+		$(a).attr("target", "_blank")
+		$(a).text("AseemIt!");
+		data.find(".col-md-12").append(a);
+		data.insertBefore($(row));
 		$(row).remove();
 	});
 	
